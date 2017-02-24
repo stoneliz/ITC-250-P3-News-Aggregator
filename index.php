@@ -15,7 +15,7 @@ require '../inc_0700/config_inc.php'; #provides configuration, pathing, error ha
 
 
 // I havnt figure out how to do the admin login yet, but I think probably this would be the place 
-
+/*
 
 $redirect_to_login = TRUE; #if true, will redirect to admin login page, else redirect to main site index
 
@@ -28,3 +28,4 @@ if($redirect_to_login)
 	myRedirect(VIRTUAL_PATH . "index.php"); 
 }
 ?>
+*/
