@@ -12,6 +12,11 @@
  
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials
 
+
+
+// I havnt figure out how to do the admin login yet, but I think probably this would be the place 
+
+
 $redirect_to_login = TRUE; #if true, will redirect to admin login page, else redirect to main site index
 
 # END CONFIG AREA ---------------------------------------------------------- 
