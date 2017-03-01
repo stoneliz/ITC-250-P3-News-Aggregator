@@ -1,0 +1,14 @@
+create table NewsCategories(
+CategoryID int unsigned not null auto_increment primary key,
+Category varchar(120),
+Description text,
+RSS varchar
+);
+
+create table NewsFeed(
+NewsID int unsigned not null auto_increment primary key,
+NewsTitle varchar(120),
+CategoryID int DEFAULT 0,
+RSS varchar
+);
+
