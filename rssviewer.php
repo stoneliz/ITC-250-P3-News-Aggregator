@@ -1,3 +1,5 @@
+<?php
+
 session_start();
 
 $FeedID = $_GET['feedid'];
@@ -63,3 +65,4 @@ if ($currentTime > $thePastTime) {
         echo '<p>' . $story->description . '</p><br /><br />';
     }
 }
+?>
