@@ -8,7 +8,6 @@ RSS varchar
 create table NewsFeed(
 NewsID int unsigned not null auto_increment primary key,
 NewsTitle varchar(120),
-NewsDate date
 CategoryID int DEFAULT 0,
 RSS varchar
 );
