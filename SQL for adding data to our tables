@@ -4,14 +4,14 @@ insert into NewsCategories values (NULL,"Music","News from the World of Music","
 insert into NewsCategories values (NULL,"Theatre","News from the Theatre World","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=theatre&o&output=rss");
 insert into NewsCategories values (NULL,"Celebs","News about Celebrities","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=celebrities&o&output=rss");
 
-insert into NewsFeed values (NULL,"Country Music",1,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=country+music&o&output=rss");
-insert into NewsFeed values (NULL,"Punk Music",1,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=punk+music&o&output=rss");
-insert into NewsFeed values (NULL,"Classical Music",1,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=classical+music&o&output=rss");
+insert into NewsFeed values (NULL,"Country Music",1,"News from the Country Music World", "http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=country+music&o&output=rss");
+insert into NewsFeed values (NULL,"Punk Music",1,"News from the Punk Music World","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=punk+music&o&output=rss");
+insert into NewsFeed values (NULL,"Classical Music",1,"News from the Classical Music World","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=classical+music&o&output=rss");
 
-insert into NewsFeed values (NULL,"Opera",2,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=opera&o&output=rss");
-insert into NewsFeed values (NULL,"Ballet",2,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=ballet&o&output=rss");
-insert into NewsFeed values (NULL,"Broadway",2,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=broadway&o&output=rss");
+insert into NewsFeed values (NULL,"Opera",2,"News from the Opera Stage","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=opera&o&output=rss");
+insert into NewsFeed values (NULL,"Ballet",2,"News from the Ballet Stage","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=ballet&o&output=rss");
+insert into NewsFeed values (NULL,"Broadway",2,"News from Broadway","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=broadway&o&output=rss");
 
-insert into NewsFeed values (NULL,"Sport Celebrities",3,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=sport+celebrities&o&output=rss");
-insert into NewsFeed values (NULL,"Movie Celebrities",3,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=movie+celebrities&o&output=rss");
-insert into NewsFeed values (NULL,"Celeb Gossip",3,"http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=celebrity+gossip&o&output=rss");
+insert into NewsFeed values (NULL,"Sport Celebrities",3,"News About Athletes","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=sport+celebrities&o&output=rss");
+insert into NewsFeed values (NULL,"Movie Celebrities",3,"News About Movie Stars","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=movie+celebrities&o&output=rss");
+insert into NewsFeed values (NULL,"Celeb Gossip",3,"All the Goss That's Fit to Print","http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=celebrity+gossip&o&output=rss");
