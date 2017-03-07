@@ -35,10 +35,7 @@ $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page 
 //$sql = "select * from wn17_surveys";
 $sql = 
 "
-select CONCAT(a.FirstName, ' ', a.LastName) AdminName, s.SurveyID, s.Title, s.Description, 
-date_format(s.DateAdded, '%W %D %M %Y %H:%i') 'DateAdded' from "
-. PREFIX . "surveys s, " . PREFIX . "Admin a where s.AdminID=a.AdminID order by s.DateAdded desc
-";
+select * FROM NewsCategories";
 //END CONFIG AREA ---------------------------------------------------------- 
 
 get_header(); #defaults to header_inc.php
@@ -69,10 +66,8 @@ if(mysqli_num_rows($result) > 0)
     echo'<table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>Admin Name</th>
       <th>Title</th>
       <th>Description</th>
-      <th>Date Added</th>
     </tr>
   </thead>
   <tbody>';
@@ -86,10 +81,8 @@ if(mysqli_num_rows($result) > 0)
 	   echo '</p>';
        */
         echo '<tr>
-      <td>' . $row['AdminName'] . '</td>
-      <td><a href="survey_view.php?id=' . $row['SurveyID'] . '">' . $row['Title'] . '</a></td>
+      <td><a href="news_view.php?id=' . $row['CategoryID'] . '">' . $row['Category'] . '</a></td>
       <td>' . $row['Description'] . '</td>
-      <td>' . $row['DateAdded'] . '</td>
     </tr>';
 	}
     
