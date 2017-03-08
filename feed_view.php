@@ -41,14 +41,14 @@ if(isset($_GET['id']))
 
 
 $sql = "select * from NewsFeed where NewsID=$id";
+$result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
+$row = mysqli_fetch_assoc($result);
 #END CONFIG AREA ---------------------------------------------------------- 
 get_header(); #defaults to theme header or header_inc.php
 ?>
 
 <?php
- //  This line
- if(mysqli_num_rows($result) > 0)
-{#there are records - present data
+ //  
     
     echo'<table class="table table-striped table-hover ">
   <thead>
@@ -58,8 +58,6 @@ get_header(); #defaults to theme header or header_inc.php
     </tr>
   </thead>
   <tbody>';
- while($row = mysqli_fetch_assoc($result))
- {
 
      $request = $row['RSS']; //go news.google.com and get RSS URL topic=tc can change topic to anything =us&q=star+wars&
       $response = file_get_contents($request); 
@@ -67,51 +65,51 @@ get_header(); #defaults to theme header or header_inc.php
       print '<h1>' . $xml->channel->title . '</h1>';
       foreach($xml->channel->item as $story)
       {
+        echo '<tr>';
+        echo '<td colspan="2">';
         echo '<a href="' . $story->link . '">' . $story->title . '</a><br />'; 
         echo '<p>' . $story->description . '</p><br /><br />';
+        echo '</td>';
+        echo '</tr>';
       }
-  }
     echo '  </tbody>
 </table> ';
     
-}else{#no records
-    echo '<div align="center">Sorry, there are no records that match this query</div>';
-}
 
 
 
- if(mysqli_num_rows($result) > 0)
-{#there are records - present data
+// if(mysqli_num_rows($result) > 0)
+//{#there are records - present data
     
-    echo'<table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>';
+//    echo'<table class="table table-striped table-hover ">
+//  <thead>
+//    <tr>
+//      <th>Title</th>
+//      <th>Description</th>
+//    </tr>
+//  </thead>
+//  <tbody>';
     
-    while($row = mysqli_fetch_assoc($result))
-    {# pull data from associative array
-       /*echo '<p>';
-       echo 'Title: <b>' . $row['Title'] . '</b><br />';
-       echo 'Description: <b>' . $row['Description'] . '</b><br />';
-       echo '<a href="survey_view.php?id=' . $row['SurveyID'] . '">' . $row['Title'] . '</a>';    
-       echo '</p>';
-       */
-        echo '<tr>
-      <td><a href="' . $row['RSS'] . '">' . $row['NewsTitle'] . '</a></td>  
-      <td>' . $row['RSS'] . '</td>
-    </tr>';
-    }
+//    while($row = mysqli_fetch_assoc($result))
+//    {# pull data from associative array
+//       /*echo '<p>';
+//       echo 'Title: <b>' . $row['Title'] . '</b><br />';
+//       echo 'Description: <b>' . $row['Description'] . '</b><br />';
+//       echo '<a href="survey_view.php?id=' . $row['SurveyID'] . '">' . $row['Title'] . '</a>';    
+//       echo '</p>';
+//       */
+//        echo '<tr>
+//      <td><a href="' . $row['RSS'] . '">' . $row['NewsTitle'] . '</a></td>  
+//      <td>' . $row['RSS'] . '</td>
+//    </tr>';
+//    }
     
-    echo '  </tbody>
-</table> ';
+//    echo '  </tbody>
+//</table> ';
     
-}else{#no records
-    echo '<div align="center">Sorry, there are no records that match this query</div>';
-}
+//}else{#no records
+//    echo '<div align="center">Sorry, there are no records that match this query</div>';
+//}
 
 
 
