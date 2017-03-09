@@ -1,4 +1,8 @@
 <?php
+//feedview.php
+include 'credentials.php';
+
+    
 
 session_start();
 
