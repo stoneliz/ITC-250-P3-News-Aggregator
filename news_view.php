@@ -20,12 +20,13 @@ require '../inc_0700/config_inc.php'; #provides configuration, pathing, error ha
 spl_autoload_register('MyAutoLoader::NamespaceLoader');//required to load SurveySez namespace objects
 $config->metaRobots = 'no index, no follow';#never index survey pages
 # check variable of item passed in - if invalid data, forcibly redirect back to demo_list.php page
+
 if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
 	 $myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
 }else{
 	myRedirect(VIRTUAL_PATH . "news/index.php");
 }
-$myNews = new NewsFeedz\News($myID); //MY_Survey extends survey class so methods can be added
+$myNews = new NewsFeedz\News($myID); //MYNews extends survey class so methods can be added
 if($myNews->isValid)
 {
 	$config->titleTag = "'" . $myNews->Title . "' News feed!";
@@ -41,7 +42,7 @@ if(isset($_GET['id']))
     header('Location:index.php');
 }
 
-
+// ** This sql variable pulls the three feeds that matches the CategoryID. The ID was passed as a loaded query string and validated by the code above this line.
 $sql = "select * from NewsFeed where CategoryID=$id";
 #END CONFIG AREA ---------------------------------------------------------- 
 get_header(); #defaults to theme header or header_inc.php
@@ -49,12 +50,12 @@ get_header(); #defaults to theme header or header_inc.php
     
 
 <?php
- //  This line
+ //  IDB::conn() creates a shareable database connection via a singleton class
  $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
 
  if(mysqli_num_rows($result) > 0)
 {#there are records - present data
-    
+    // ** This Echo statement sets up the table. It also includes classes from the rest of the protosite to maintain a similar look and feel. 
     echo'<table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -63,21 +64,16 @@ get_header(); #defaults to theme header or header_inc.php
     </tr>
   </thead>
   <tbody>';
-    
+    // ** This while loop Spits out the rows based on the Variable $result.
 	while($row = mysqli_fetch_assoc($result))
 	{# pull data from associative array
-	   /*echo '<p>';
-	   echo 'Title: <b>' . $row['Title'] . '</b><br />';
-	   echo 'Description: <b>' . $row['Description'] . '</b><br />';
-       echo '<a href="survey_view.php?id=' . $row['SurveyID'] . '">' . $row['Title'] . '</a>';    
-	   echo '</p>';
-       */
+	  
         echo '<tr>
       <td><a href="feed_view.php?id=' . $row['NewsID'] . '">' . $row['NewsTitle'] . '</a></td>  
       <td>' . $row['Description'] . '</td>
     </tr>';
 	}
-    
+    // ** This closes the table. 
     echo '  </tbody>
 </table> ';
     

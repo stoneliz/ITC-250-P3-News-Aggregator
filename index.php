@@ -32,10 +32,8 @@ $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page 
 */
 
 # SQL statement - PREFIX is optional way to distinguish your app
-//$sql = "select * from wn17_surveys";
-$sql = 
-"
-select * FROM NewsCategories";
+// ** this sets the variable for the sql statement for this page. It pulls everthing from the NewsCategories entity
+$sql = "select * FROM NewsCategories";
 //END CONFIG AREA ---------------------------------------------------------- 
 
 get_header(); #defaults to header_inc.php
@@ -47,16 +45,6 @@ get_header(); #defaults to header_inc.php
 <?php
 #IDB::conn() creates a shareable database connection via a singleton class
 $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
-
-
-
-
-
-
-
-
-
-
 
 
 echo '<div align="center"><h4>SQL STATEMENT: <font color="red">' . $sql . '</font></h4></div>';
@@ -74,12 +62,7 @@ if(mysqli_num_rows($result) > 0)
     
 	while($row = mysqli_fetch_assoc($result))
 	{# pull data from associative array
-	   /*echo '<p>';
-	   echo 'Title: <b>' . $row['Title'] . '</b><br />';
-	   echo 'Description: <b>' . $row['Description'] . '</b><br />';
-       echo '<a href="survey_view.php?id=' . $row['SurveyID'] . '">' . $row['Title'] . '</a>';    
-	   echo '</p>';
-       */
+	  
         echo '<tr>
       <td><a href="news_view.php?id=' . $row['CategoryID'] . '">' . $row['Category'] . '</a></td>
       <td>' . $row['Description'] . '</td>
