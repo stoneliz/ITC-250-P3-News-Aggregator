@@ -5,15 +5,15 @@
  *
  * Objects in this version are the Survey, Question & Answer objects
  * 
- * @package SurveySez
- * @author William Newman
- * @version 2.12 2015/06/04
- * @link http://newmanix.com/ 
- * @license http://www.apache.org/licenses/LICENSE-2.0
- * @see Question.php
- * @see Answer.php
- * @see Response.php
- * @see Choice.php
+ * @package NewsAggregator
+ * @author Group 7 Anthony Stenberg-Di Geronimo, Kiara McMorris, Liz Stone, Yan Men
+ * @version 2.10 2017/03/09
+ * @link https://github.com/stoneliz/ITC-250-P3-News-Aggregator
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License ("OSL") v. 3.0
+ * @see config_inc.php  
+ * @see header_inc.php
+ * @see footer_inc.php 
+ * @todo none
  */
  
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials
