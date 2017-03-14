@@ -1,9 +1,4 @@
 <?php
-//feedview.php
-include 'credentials.php';
-
-    
-
 session_start();
 
 $FeedID = $_GET['feedid'];
