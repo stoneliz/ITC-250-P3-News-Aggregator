@@ -3,10 +3,10 @@
  * demo_idb.php is both a test page for your IDB shared mysqli connection, and a starting point for 
  * building DB applications using IDB connections
  *
- * @package nmCommon
- * @author Bill Newman <williamnewman@gmail.com>
- * @version 2.09 2011/05/09
- * @link http://www.newmanix.com/
+ * @package NewsAggregator
+ * @author Group 7 Anthony Stenberg-Di Geronimo, Kiara McMorris, Liz Stone, Yan Men
+ * @version 2.10 2017/03/09
+ * @link https://github.com/stoneliz/ITC-250-P3-News-Aggregator
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License ("OSL") v. 3.0
  * @see config_inc.php  
  * @see header_inc.php
