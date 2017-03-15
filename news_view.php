@@ -18,22 +18,22 @@ spl_autoload_register('MyAutoLoader::NamespaceLoader');//required to load Survey
 $config->metaRobots = 'no index, no follow';#never index survey pages
 # check variable of item passed in - if invalid data, forcibly redirect back to demo_list.php page
 
-if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
+if (isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
 	 $myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
-}else{
+}else {
 	myRedirect(VIRTUAL_PATH . "news/index.php");
 }
 $myNews = new NewsFeedz\News($myID); //MYNews extends survey class so methods can be added
-if($myNews->isValid){
+if ($myNews->isValid){
 	$config->titleTag = "'" . $myNews->Title . "' News feed!";
-}else{
+}else {
 	$config->titleTag = smartTitle(); //use constant 
 }
 
-if(isset($_GET['id'])){//process data
+if (isset($_GET['id'])){//process data
     //cast the data to an integer, for security purposes
     $id = (int)$_GET['id'];
-}else{//redirect to safe page
+}else {//redirect to safe page
     header('Location:index.php');
 }
 
