@@ -17,24 +17,23 @@
  */
  
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials
-spl_autoload_register('MyAutoLoader::NamespaceLoader');//required to load SurveySez namespace objects
+spl_autoload_register('MyAutoLoader::NamespaceLoader');//required to load namespace objects
 $config->metaRobots = 'no index, no follow';#never index survey pages
+
 # check variable of item passed in - if invalid data, forcibly redirect back to demo_list.php page
-if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
-	 $myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
-}else{
+if (isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
+	$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
+}else {
 	myRedirect(VIRTUAL_PATH . "news/index.php");
 }
 $myNews = new NewsFeedz\News($myID); //mynews extends survey class so methods can be added
-if($myNews->isValid)
-{
+if ($myNews->isValid){
 	$config->titleTag = "'" . $myNews->Title . "' News feed!";
-}else{
+}else {
 	$config->titleTag = smartTitle(); //use constant 
 }
 
-if(isset($_GET['id']))
-{//process data
+if (isset($_GET['id'])){//process data
     //cast the data to an integer, for security purposes
     $id = (int)$_GET['id'];
 }
@@ -49,22 +48,22 @@ get_header(); #defaults to theme header or header_inc.php
 ?>
 
 <?php
-    // ** This Echo statement sets up the table. It also includes classes from the rest of the protosite to maintain a similar look and feel. 
-    echo'<table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>';
+// ** This Echo statement sets up the table. It also includes classes from the rest of the protosite to maintain a similar look and feel. 
+echo'<table class="table table-striped table-hover ">
+     <thead>
+       <tr>
+         <th>Title</th>
+         <th>Description</th>
+       </tr>
+     </thead>
+     <tbody>';
 
-     $request = $row['RSS']; //go news.google.com and get RSS URL topic=tc can change topic to anything =us&q=star+wars&
-      $response = file_get_contents($request); 
-      $xml = simplexml_load_string($response);
-      print '<h1>' . $xml->channel->title . '</h1>';
-      foreach($xml->channel->item as $story)
-      {
+$request = $row['RSS']; //go news.google.com and get RSS URL topic=tc can change topic to anything =us&q=star+wars&
+$response = file_get_contents($request); 
+$xml = simplexml_load_string($response);
+print '<h1>' . $xml->channel->title . '</h1>';
+
+foreach ($xml->channel->item as $story){
         echo '<tr>';
         echo '<td colspan="2">';
         echo '<a href="' . $story->link . '">' . $story->title . '</a><br />'; 
@@ -73,46 +72,7 @@ get_header(); #defaults to theme header or header_inc.php
         echo '</tr>';
       }
     echo '  </tbody>
-</table> ';
-    
-
-
-
-// if(mysqli_num_rows($result) > 0)
-//{#there are records - present data
-    
-//    echo'<table class="table table-striped table-hover ">
-//  <thead>
-//    <tr>
-//      <th>Title</th>
-//      <th>Description</th>
-//    </tr>
-//  </thead>
-//  <tbody>';
-    
-//    while($row = mysqli_fetch_assoc($result))
-//    {# pull data from associative array
-//       /*echo '<p>';
-//       echo 'Title: <b>' . $row['Title'] . '</b><br />';
-//       echo 'Description: <b>' . $row['Description'] . '</b><br />';
-//       echo '<a href="survey_view.php?id=' . $row['SurveyID'] . '">' . $row['Title'] . '</a>';    
-//       echo '</p>';
-//       */
-//        echo '<tr>
-//      <td><a href="' . $row['RSS'] . '">' . $row['NewsTitle'] . '</a></td>  
-//      <td>' . $row['RSS'] . '</td>
-//    </tr>';
-//    }
-    
-//    echo '  </tbody>
-//</table> ';
-    
-//}else{#no records
-//    echo '<div align="center">Sorry, there are no records that match this query</div>';
-//}
-
-
-
-
+            </table> ';
+   
 
 get_footer(); #defaults to theme footer or footer_inc.php
