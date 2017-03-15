@@ -1,13 +1,21 @@
 <?php
- //loadRSS.php
-/* 
+
+//loadRSS.php
+/**
+ * @package NewsAggregator
+ * @author Group 7 Anthony Stenberg-Di Geronimo, Kiara McMorris, Liz Stone, Yan Men
+ * @version 2.10 2017/03/09
+ * @link https://github.com/stoneliz/ITC-250-P3-News-Aggregator
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License ("OSL") v. 3.0
+ * @see config_inc.php  
+ * @see header_inc.php
+ * @see footer_inc.php 
+ * @todo none
 **
 **This file will load all the latest stories from the list of rss feeeds (listed below), 
 **
-**
 */
-//simple.php is the all-in-one php file for simplepie, a tool that parses rss feeds
-    require 'include\simple.php';
+require 'include\simple.php';
 
     class RSSLoader
     {
@@ -52,18 +60,15 @@
             $iConn = @mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) or die(myerror(__FILE__,__LINE__,mysqli_connect_error())) ;
     
             // if single item, set start to item number and length to 1
-            if(isset($_GET['item']))
-            {
+            if (isset($_GET['item'])){
                 $start = $_GET['item'];
                 $length = 1;
-               
-            }
+        }
  
 
 
             // loop through items
-            foreach($feed->get_items($start,$length) as $item)
-            {
+            foreach ($feed->get_items($start,$length) as $item){
                 
                 $ArticleImage = '';
                 $ArticleTitle = mysqli_real_escape_string($iConn, $item->get_title());
@@ -74,11 +79,8 @@
                 
                /* $result = preg_match_all('/<img.*?src\s*=.*?>/', $ArticleDescription , $matches, PREG_SET_ORDER);  */
                 $result = preg_match_all('/<img.*?src\s*=.*?>/', $ArticleDescription , $images);
-                if($result)
-                { 
+                if($result){ 
                     $ArticleImage =$images[0][0];
-           
-                
                 }
            
                 $ArticleDescription=str_replace($ArticleImage, '', $ArticleDescription);     
@@ -89,9 +91,6 @@
                 $sql3 = 'INSERT INTO wn17_p3_articles(Title, Description, URL, Time_Stamp, OriginalDate, ImageURL)  VALUES("' . $ArticleTitle . '","'  .  $ArticleDescription . '","'  .  $ArticleURL .'","' . $now .'","' . $ArticleDate.'","' . $ArticleImage . '");' ;
                 
                 mysqli_query($iConn, $sql3);
-    
-          
-    
             }
     
         }
