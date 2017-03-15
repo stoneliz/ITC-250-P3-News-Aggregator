@@ -8,14 +8,14 @@
  * There are references to include files common_inc.php, which stores utility functions 
  * and credentials_inc.php which stores database credentials 
  *
- * @package nmCommon
- * @author Bill Newman <williamnewman@gmail.com>
- * @version 2.3 2015/07/06 
- * @link http://www.newmanix.com/ 
+ * @package NewsAggregator
+ * @author Group 7 Anthony Stenberg-Di Geronimo, Kiara McMorris, Liz Stone, Yan Men
+ * @version 2.10 2017/03/09
+ * @link https://github.com/stoneliz/ITC-250-P3-News-Aggregator
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License ("OSL") v. 3.0
- * @see common_inc.php
- * @see credentials_inc.php
- * @see custom_inc.php  
+ * @see config_inc.php  
+ * @see header_inc.php
+ * @see footer_inc.php 
  * @todo none
  */
 # START ERROR HANDLING (show or hide page errors, turn on/off error logging)---------------------------------------------
