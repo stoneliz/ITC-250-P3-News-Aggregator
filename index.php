@@ -1,8 +1,5 @@
 <?php
 /**
- * demo_idb.php is both a test page for your IDB shared mysqli connection, and a starting point for 
- * building DB applications using IDB connections
- *
  * @package NewsAggregator
  * @author Group 7 Anthony Stenberg-Di Geronimo, Kiara McMorris, Liz Stone, Yan Men
  * @version 2.10 2017/03/09
@@ -13,14 +10,13 @@
  * @see footer_inc.php 
  * @todo none
  */
-# '../' works for a sub-folder.  use './' for the root
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials
 
 $config->titleTag = smartTitle(); #Fills <title> tag. If left empty will fallback to $config->titleTag in config_inc.php
 $config->metaDescription = smartTitle() . ' - ' . $config->metaDescription; 
 /*
-$config->metaDescription = 'Web Database ITC281 class website.'; #Fills <meta> tags.
-$config->metaKeywords = 'SCCC,Seattle Central,ITC281,database,mysql,php';
+$config->metaDescription = ''; #Fills <meta> tags.
+$config->metaKeywords = '';
 $config->metaRobots = 'no index, no follow';
 $config->loadhead = ''; #load page specific JS
 $config->banner = ''; #goes inside header
@@ -33,46 +29,37 @@ $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page 
 
 # SQL statement - PREFIX is optional way to distinguish your app
 // ** this sets the variable for the sql statement for this page. It pulls everthing from the NewsCategories entity
-$sql = "select * FROM NewsCategories";
 //END CONFIG AREA ---------------------------------------------------------- 
+$sql = "select * FROM NewsCategories";
 
 get_header(); #defaults to header_inc.php
-?>
-<h3 align="center"><?php echo $config->titleTag; ?></h3>
-<p>This page  is both a test page for your IDB shared mysqli connection, and a starting point for 
- * building DB applications using IDB connections</p>
-<p>creates a singleton (shared) mysqli connection via a class named IDB</p>
-<?php
-#IDB::conn() creates a shareable database connection via a singleton class
+
 $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
 
 
 echo '<div align="center"><h4>SQL STATEMENT: <font color="red">' . $sql . '</font></h4></div>';
-if(mysqli_num_rows($result) > 0)
-{#there are records - present data
-    
+if (mysqli_num_rows($result) > 0){#there are records - present data
     echo'<table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>';
+         <thead>
+           <tr>
+             <th>Title</th>
+             <th>Description</th>
+           </tr>
+         </thead>
+         <tbody>';
     
-	while($row = mysqli_fetch_assoc($result))
-	{# pull data from associative array
+	while ($row = mysqli_fetch_assoc($result)){# pull data from associative array
 	  
-        echo '<tr>
-      <td><a href="news_view.php?id=' . $row['CategoryID'] . '">' . $row['Category'] . '</a></td>
-      <td>' . $row['Description'] . '</td>
-    </tr>';
+            echo '<tr>
+                  <td><a href="news_view.php?id=' . $row['CategoryID'] . '">' . $row['Category'] . '</a></td>
+                  <td>' . $row['Description'] . '</td>
+                  </tr>';
 	}
     
     echo '  </tbody>
-</table> ';
+            </table> ';
     
-}else{#no records
+}else {#no records
 	echo '<div align="center">Sorry, there are no records that match this query</div>';
 }
 @mysqli_free_result($result);
